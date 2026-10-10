@@ -1,0 +1,32 @@
+        body {
+            background: linear-gradient(135deg, #C9A227,  #A8861B);
+            color: #FFFFFF;
+            min-height: 100vh;
+            padding: 30px 15px;
+        }
+
+       
+        .tour-quote {
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); 
+        }
+        
+        .tour-img {
+            float: right;
+            width: 320px;
+            max-width: 100%;
+            margin: 0 0 15px 20px;
+            border: 3px solid rgba(255, 255, 255, 0.8); 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .tour-desc {
+            text-align: justify;      
+            font-size: 17px;
+            line-height: 1.8;
+        }

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 17 - Kiểm tra biểu mẫu bằng JavaScript</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f3f4f6;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .form-card {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 16px;
+            padding: 35px 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid #fed7aa;
+        }
+        .form-title {
+            color: #c2410c;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .form-desc {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 14.5px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group.error input {
+            border-color: #dc2626 !important;
+        }
+        .form-group.success input {
+            border-color: #cbd5e1;
+        }
+        .msg {
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+        .form-group.error .msg-error {
+            display: block;
+            color: #dc2626;
+        }
+        .form-group.success .msg-success {
+            display: block;
+            color: #16a34a;
+        }
+        .btn-submit {
+            width: 100%;
+            background-color: #c2410c;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-submit:hover {
+            background-color: #a3360a;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-card">
+    <div class="form-title">Đăng ký tài khoản</div>
+    <div class="form-desc">Dữ liệu được kiểm tra bằng JavaScript trước khi gửi.</div>
+
+    <form id="regForm" novalidate>
+        <div class="form-group" id="grpName">
+            <label>Họ và tên</label>
+            <input type="text" id="fullname" value="Nguyễn Văn An">
+            <div class="msg msg-error">✗ Họ và tên không được để trống</div>
+            <div class="msg msg-success">✓ Hợp lệ</div>
+        </div>
+
+        <div class="form-group error" id="grpEmail">
+            <label>Email</label>
+            <input type="email" id="email" value="an.nv@">
+            <div class="msg msg-error">✗ Email không hợp lệ (thiếu tên miền)</div>
+            <div class="msg msg-success">✓ Hợp lệ</div>
+        </div>
+
+        <div class="form-group error" id="grpPass">
+            <label>Mật khẩu</label>
+            <input type="password" id="password" value="123">
+            <div class="msg msg-error">✗ Mật khẩu phải có ít nhất 6 ký tự</div>
+            <div class="msg msg-success">✓ Hợp lệ</div>
+        </div>
+
+        <div class="form-group" id="grpConfirm">
+            <label>Xác nhận mật khẩu</label>
+            <input type="password" id="confirmPass" value="123456">
+            <div class="msg msg-error">✗ Mật khẩu xác nhận không khớp</div>
+            <div class="msg msg-success">✓ Hợp lệ</div>
+        </div>
+
+        <button type="submit" class="btn-submit">Đăng ký</button>
+    </form>
+</div>
+
+<script>
+    const form = document.getElementById('regForm');
+
+    function checkFullname() {
+        const val = document.getElementById('fullname').value.trim();
+        const grp = document.getElementById('grpName');
+        if (val === '') {
+            grp.className = 'form-group error';
+            return false;
+        } else {
+            grp.className = 'form-group success';
+            return true;
+        }
+    }
+
+    function checkEmail() {
+        const val = document.getElementById('email').value.trim();
+        const grp = document.getElementById('grpEmail');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(val)) {
+            grp.className = 'form-group error';
+            return false;
+        } else {
+            grp.className = 'form-group success';
+            return true;
+        }
+    }
+
+    function checkPassword() {
+        const val = document.getElementById('password').value;
+        const grp = document.getElementById('grpPass');
+        if (val.length < 6) {
+            grp.className = 'form-group error';
+            return false;
+        } else {
+            grp.className = 'form-group success';
+            return true;
+        }
+    }
+
+    function checkConfirmPass() {
+        const pass = document.getElementById('password').value;
+        const confirm = document.getElementById('confirmPass').value;
+        const grp = document.getElementById('grpConfirm');
+        if (confirm === '' || confirm !== pass) {
+            grp.className = 'form-group error';
+            return false;
+        } else {
+            grp.className = 'form-group success';
+            return true;
+        }
+    }
+
+    document.getElementById('fullname').addEventListener('input', checkFullname);
+    document.getElementById('email').addEventListener('input', checkEmail);
+    document.getElementById('password').addEventListener('input', () => {
+        checkPassword();
+        checkConfirmPass();
+    });
+    document.getElementById('confirmPass').addEventListener('input', checkConfirmPass);
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const isValidName = checkFullname();
+        const isValidEmail = checkEmail();
+        const isValidPass = checkPassword();
+        const isValidConfirm = checkConfirmPass();
+
+        if (isValidName && isValidEmail && isValidPass && isValidConfirm) {
+            alert('Đăng ký tài khoản thành công!');
+        }
+    });
+
+    checkFullname();
+    checkEmail();
+    checkPassword();
+    checkConfirmPass();
+</script>
+
+</body>
+</html>

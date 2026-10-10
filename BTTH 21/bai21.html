@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 21 - Bố cục trang 4 vùng</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+
+        
+        header {
+            background: #C62828;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            gap: 15px;
+        }
+
+        header img.logo {
+            height: 50px;
+        }
+
+        header h1 {
+            font-size: 22px;
+        }
+
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 200px 1fr 160px;
+            min-height: 450px;
+        }
+
+        
+        aside.left-menu {
+            background-color: #8E0000;
+            padding: 10px 0;
+        }
+
+        aside.left-menu ul {
+            list-style: none;
+        }
+
+        aside.left-menu li a {
+            display: block;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-bottom: 1px solid #a30000;
+            font-size: 14px;
+        }
+
+        aside.left-menu li a:hover {
+            background-color: #C62828;
+        }
+
+        
+        main.content {
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .sub-menu-box {
+            background-color: #FFE082;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sub-menu-box p {
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .big-title {
+            color:#a30000;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .sub-menu-box ul {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+
+        .sub-menu-box a {
+            color: #000;
+            text-decoration: none;
+        }
+
+       .main-article {
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        padding: 15px 20px;
+        background-color: #f8fbff;
+        line-height: 1.6;
+        margin-top: 15px;
+        }
+
+        .main-article h3 {
+            color: #1565C0;
+            margin-bottom: 8px;
+        }
+
+        .middle {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        
+        aside.right-ads {
+            background-color: #f9f9f9;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            border-left: 1px solid #eee;
+        }
+
+        aside.right-ads img {
+            width: 100%;
+            max-width: 140px;
+            border: 1px solid #ddd;
+        }
+
+      
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <header>
+            <img src="LogoTT.gif" alt="Logo" class="logo">
+            <h1>Hệ thống bài tập Lập trình Web</h1>
+        </header>
+
+        <div class="main-container">
+            
+            <aside class="left-menu">
+                <ul>
+                    <li><a href="#">Ngôn ngữ HTML</a></li>
+                    <li><a href="#">Ngôn ngữ JavaScript</a></li>
+                    <li><a href="#">Các đối tượng trong JavaScript</a></li>
+                    <li><a href="#">CSS và bố cục hiện đại</a></li>
+                </ul>
+            </aside>
+
+            
+            <main class="content">
+                <div class="big-title"> 
+                    <p>Bài tập HTML cơ bản</p>
+                    </div>
+                <div class="sub-menu-box">
+                    
+                    <ul>
+                        <li><a href="#">Đảo chuỗi • Phân tích chuỗi • Tìm và thay thế</a></li>
+                    </ul>
+                </div>
+
+                <div class="main-article">
+                    <p>Thiết kế trang web có nội dung như sau:</p>
+                    <p class="middle">Trung Tâm Tin học – ĐH KHTN</p>
+                    <p class="middle">Chào mừng các bạn đến với ngôn ngữ HTML</p>
+                </div>
+            </main>
+
+            
+            <aside class="right-ads">
+                <img src="Qcao01.gif" alt="Quảng cáo 1">
+                <img src="Qcao02.gif" alt="Quảng cáo 2">
+            </aside>
+        </div>
+    </div>
+
+</body>
+</html>

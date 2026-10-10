@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 20 - Hiệu ứng ảnh với CSS Filter</title>
+    <style>
+        body {
+            background-color: #121619;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 15px;
+            margin: 0;
+        }
+
+        .card {
+            background-color: #1c2226;
+            padding: 25px 40px;
+            border-radius: 12px;
+            text-align: center;
+            width: 380px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            margin-bottom: 25px;
+        }
+
+        .card img {
+            max-width: 100px;
+            transition: filter 0.3s ease, transform 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .card .subtitle {
+            font-style: italic;
+            font-size: 22px;
+            background: linear-gradient(180deg, #FFE082, #FFB300);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        .button-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            max-width: 600px;
+        }
+
+        .btn {
+            background-color: #232b30;
+            color: #e5e7eb;
+            border: 1px solid #374151;
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #374151;
+        }
+
+        .btn.active {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+            color: #fff;
+        }
+
+        .effect-gray { filter: grayscale(100%); }
+        .effect-xray { filter: grayscale(100%) invert(100%); }
+        .effect-invert { filter: invert(100%); }
+        .effect-fliph { transform: scaleX(-1); }
+        .effect-flipv { transform: scaleY(-1); }
+        .effect-glow { filter: drop-shadow(0 0 10px #ffeb3b); }
+        .effect-shadow { filter: drop-shadow(5px 5px 5px #000); }
+        .effect-bold-shadow { filter: drop-shadow(8px 8px 0px #000); }
+        .effect-dropshadow { filter: drop-shadow(4px 4px 8px #0d6efd); }
+        .effect-blur { filter: blur(3px); }
+        .effect-wave { filter: hue-rotate(90deg) contrast(150%); }
+        .effect-mask { filter: brightness(40%) contrast(200%); }
+        .effect-alpha { filter: opacity(40%); }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img id="target-img" src="hoahong.gif" alt="Hoa hồng" class="effect-gray">
+        <div class="subtitle">Special For You</div>
+    </div>
+
+    <div class="button-grid" id="btn-container">
+        <button class="btn active" onclick="setEffect(this, 'effect-gray')">Gray</button>
+        <button class="btn" onclick="setEffect(this, 'effect-xray')">Xray</button>
+        <button class="btn" onclick="setEffect(this, 'effect-invert')">Invert</button>
+        <button class="btn" onclick="setEffect(this, 'effect-fliph')">FlipH</button>
+        <button class="btn" onclick="setEffect(this, 'effect-flipv')">FlipV</button>
+        <button class="btn" onclick="setEffect(this, 'effect-glow')">Glow</button>
+        <button class="btn" onclick="setEffect(this, 'effect-shadow')">Shadow</button>
+        <button class="btn" onclick="setEffect(this, 'effect-bold-shadow')">Bold Shadow</button>
+        <button class="btn" onclick="setEffect(this, 'effect-dropshadow')">DropShadow</button>
+        <button class="btn" onclick="setEffect(this, 'effect-blur')">Blur</button>
+        <button class="btn" onclick="setEffect(this, 'effect-wave')">Wave</button>
+        <button class="btn" onclick="setEffect(this, 'effect-mask')">Mask</button>
+        <button class="btn" onclick="setEffect(this, 'effect-alpha')">Alpha</button>
+    </div>
+
+    <script>
+        function setEffect(btn, effectClass) {
+            const img = document.getElementById('target-img');
+            img.className = effectClass;
+
+            document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+    </script>
+</body>
+</html>

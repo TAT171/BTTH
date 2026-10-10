@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 22 - Chế độ Sáng / Tối</title>
+    <style>
+        
+        :root {
+            --bg-body: #f8fafc;
+            --text-main: #0f172a;
+            --card-bg: #ffffff;
+            --card-border: #e2e8f0;
+            --title-color: #2563eb;
+            --info-text: #64748b;
+        }
+
+        
+        body.toi {
+            --bg-body: #0f172a;
+            --text-main: #e2e8f0;
+            --card-bg: #1e293b;
+            --card-border: #334155;
+            --title-color: #60a5fa;
+            --info-text: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: Arial, sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+            margin: 0;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 22px;
+            margin: 0;
+        }
+
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 54px;
+            height: 28px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #cbd5e1;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2563eb;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 15px;
+            transition: background-color 0.4s ease, border-color 0.4s ease;
+        }
+
+        .card h3 {
+            color: var(--title-color);
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .status-text {
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--info-text);
+        }
+    </style>
+</head>
+<body class="toi">
+
+    <div class="container">
+        <div class="header-bar">
+            <h1>Chế độ Tối / Sáng</h1>
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle" checked onclick="toggleTheme()">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <div class="card">
+            <h3>Biến CSS (CSS Variables)</h3>
+            <p>Toàn bộ màu sắc được khai báo trong :root và ghi đè bằng class .toi.</p>
+        </div>
+
+        <div class="card">
+            <h3>Chuyển đổi bằng JavaScript</h3>
+            <p>Nút gạt thêm/bỏ class .toi trên &lt;body&gt; — mọi thành phần tự đổi màu.</p>
+        </div>
+
+        <div class="card">
+            <h3>Chuyển màu mượt</h3>
+            <p>Dùng transition để màu nền và chữ chuyển dần, không bị giật.</p>
+        </div>
+
+        <div class="status-text" id="status">Đây là giao diện ở chế độ TỐI (đang bật)</div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const toggle = document.getElementById('theme-toggle');
+            const status = document.getElementById('status');
+
+            if (toggle.checked) {
+                body.classList.add('toi');
+                status.innerText = "Đây là giao diện ở chế độ TỐI (đang bật)";
+            } else {
+                body.classList.remove('toi');
+                status.innerText = "Đây là giao diện ở chế độ SÁNG (đang bật)";
+            }
+        }
+    </script>
+</body>
+</html>

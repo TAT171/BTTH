@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 13 - Đồng Hồ Số</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        
+        .clock-container {
+            background-color: #000000;
+            border-radius: 12px;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        
+        .clock-container img {
+            height: 52px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        
+        .greeting {
+            margin-top: 25px;
+            color: #C62828;
+            font-size: 32px;
+            font-weight: bold;
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    
+    <div class="clock-container">
+        
+        <img id="h1" src="00.gif" alt="0">
+        <img id="h2" src="00.gif" alt="0">
+
+        <img src="haicham.gif" alt=":">
+
+            <img id="m1" src="00.gif" alt="0">
+            <img id="m2" src="00.gif" alt="0">
+
+        <img src="haicham.gif" alt=":">
+   
+        <img id="s1" src="00.gif" alt="0">
+        <img id="s2" src="00.gif" alt="0">
+    </div>
+
+    
+    <div id="greeting" class="greeting">Chào buổi sáng</div>
+
+    
+    <script>
+        
+        function getDigitImagePath(digit) {
+            
+            const formatted = digit < 10 ? '0' + digit : digit;
+            return formatted + '.gif';
+        }
+
+        function updateClock() {
+            
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            
+            const h1 = Math.floor(hours / 10);
+            const h2 = hours % 10;
+            
+            const m1 = Math.floor(minutes / 10);
+            const m2 = minutes % 10;
+            
+            const s1 = Math.floor(seconds / 10);
+            const s2 = seconds % 10;
+
+            
+            document.getElementById('h1').src = getDigitImagePath(h1);
+            document.getElementById('h2').src = getDigitImagePath(h2);
+            
+            document.getElementById('m1').src = getDigitImagePath(m1);
+            document.getElementById('m2').src = getDigitImagePath(m2);
+            
+            document.getElementById('s1').src = getDigitImagePath(s1);
+            document.getElementById('s2').src = getDigitImagePath(s2);
+
+            
+            let greetingText = '';
+            if (hours >= 5 && hours < 12) {
+                greetingText = 'Chào buổi sáng';
+            } else if (hours >= 12 && hours < 18) {
+                greetingText = 'Chào buổi chiều';
+            } else {
+                greetingText = 'Chào buổi tối';
+            }
+            document.getElementById('greeting').innerText = greetingText;
+        }
+
+       
+        updateClock();
+
+        
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
